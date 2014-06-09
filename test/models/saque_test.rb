@@ -7,10 +7,29 @@ class SaqueTest < ActiveSupport::TestCase
 
     saque = Saque.new(quantidadeNota, valorNota)
 
-    valorCorreto      = saque.getValor()      == valorNota
-    quantidadeCorreta = saque.getQuantidade() == quantidadeNota
+    valorCorreto      = saque.valor()      == valorNota
+    quantidadeCorreta = saque.quantidade() == quantidadeNota
 
     assert valorCorreto
     assert quantidadeCorreta
+  end
+
+  test "Deve comparar-se com outro saque" do
+  	quantidadeNota = 1
+  	valorNota = 10
+
+    saque = Saque.new(quantidadeNota, valorNota)
+    outroSaque = Saque.new(quantidadeNota, valorNota)
+
+    assert saque.eql?(outroSaque)
+  end
+  test "Deve comparar o valor em eql?" do
+  	quantidadeNota = 1
+  	valorNota = 10
+
+    saque = Saque.new(quantidadeNota, valorNota)
+    outroSaque = Saque.new(2, valorNota)
+
+    assert_not saque.eql?(outroSaque)
   end
 end

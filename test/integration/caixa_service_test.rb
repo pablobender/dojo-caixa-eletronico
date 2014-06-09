@@ -2,18 +2,46 @@ require 'test_helper'
 
 class CaixaServiceTest < ActiveSupport::TestCase
   test "deve retornar 1 nota de R$20,00 e 1 nota de R$ 10,00 quando valor do Saque for igual a R$ 30,00" do
-  	caixaService = CaixaService.new
-  	valorSaque = 30
+    caixaService = CaixaService.new
+    valorSaque = 30
 
-  	saqueAtual = caixaService.retornaSaque(valorSaque)
+    saqueAtual = caixaService.retornaSaque(valorSaque)
 
-  	quantidadeNota10 = 1
-  	quantidadeNota20 = 1
-  	valorNota20 = 20
-  	valorNota10 = 10
+    quantidadeNota10 = 1
+    quantidadeNota20 = 1
+    valorNota20 = 20
+    valorNota10 = 10
 
-  	saqueEsperado = [Saque.new(quantidadeNota10, valorNota10), Saque.new(quantidadeNota20, valorNota20)]
+    saqueEsperado = [Saque.new(quantidadeNota10, valorNota10), Saque.new(quantidadeNota20, valorNota20)]
 
-  	assert(saqueEsperado.eql?(saqueAtual))
+    assert(saqueEsperado.eql?(saqueAtual))
+  end
+
+  test "deve retornar 1 nota de R$10,00 quando o valor do saque for igual a R$10,00" do
+    caixaService = CaixaService.new
+    valorSaque = 10
+
+    saqueAtual = caixaService.retornaSaque(valorSaque)
+
+    quantidadeNota10 = 1
+    valorNota10 = 10
+
+    saqueEsperado = [Saque.new(quantidadeNota10, valorNota10)]
+
+    assert(saqueEsperado.eql?(saqueAtual))
+  end
+
+  test "deve retornar 1 nota de R$20,00 quando o valor do saque for igual a R$20,00" do
+    caixaService = CaixaService.new
+    valorSaque = 20
+
+    saqueAtual = caixaService.retornaSaque(valorSaque)
+
+    quantidadeNota20 = 1
+    valorNota20 = 20
+
+    saqueEsperado = [Saque.new(quantidadeNota20, valorNota20)]
+
+    assert(saqueEsperado.eql?(saqueAtual))
   end
 end
