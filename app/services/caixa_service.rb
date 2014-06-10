@@ -1,15 +1,20 @@
 class CaixaService
-  def retornaSaque(valorTotalSaque)
-    quantidadeNota20 = 1
-    valorNota20 = 20
+  def initialize
+    @cedulas = [100, 50, 20, 10, 5]
+  end
 
-  	saque = [ Saque.new(quantidadeNota20, valorNota20) ]
-    if (valorTotalSaque > 20)
-      quantidadeNota10 = 1
-      valorNota10 = 10
-      saque.push(Saque.new(quantidadeNota10, valorNota10))
+  def retornaSaque(valorTotalSaque)
+    saque = []
+
+    @cedulas.each do |valorCedula|
+      quantidadeCedula = (valorTotalSaque / valorCedula).to_i;
+
+      if (quantidadeCedula > 0)
+        saque << Saque.new(quantidadeCedula, valorCedula)
+        valorTotalSaque -= (quantidadeCedula * valorCedula)
+      end
     end
+
     saque
 	end
-
 end
