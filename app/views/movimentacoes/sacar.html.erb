@@ -1,0 +1,8 @@
+<h1>Confirmação de Saque</h1>
+<p>Você sacou: <strong><%= @valor_sacado %></strong></p>
+<ul>
+  <% @saque.each do |cedula| %>
+    <li><%= cedula.quantidade %> cédula(s) de <%= cedula.valor %> </li>
+<% end %>
+</ul>
+<%= link_to "Novo Saque", movimentacoes_iniciar_saque_url %>

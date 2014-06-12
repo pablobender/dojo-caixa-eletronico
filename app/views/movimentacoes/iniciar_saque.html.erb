@@ -1,0 +1,6 @@
+<h1>Saque [Banco XYZ]</h1>
+<%= form_tag controller: :movimentacoes, action: :sacar do %>
+  <%= label_tag :valor, "Valor" %>
+  <%= number_field_tag(:valor, in: 2.0..1000.0, step: 1) %>
+  <%= submit_tag "Sacar" %>
+<% end %>
